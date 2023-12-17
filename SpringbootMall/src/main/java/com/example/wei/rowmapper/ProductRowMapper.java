@@ -1,5 +1,6 @@
 package com.example.wei.rowmapper;
 
+import com.example.wei.constant.ProductCategory;
 import com.example.wei.model.Product;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -14,7 +15,7 @@ public class ProductRowMapper implements RowMapper<Product> {
 
         product.setProductId(rs.getInt("product_id" ));
         product.setProductName(rs.getString("product_name"));
-        product.setCategory(rs.getString("category"));
+
         product.setImageUrl(rs.getString("image_url"));
         product.setPrice(rs.getInt("price"));
         product.setStock(rs.getInt("stock"));
@@ -23,6 +24,7 @@ public class ProductRowMapper implements RowMapper<Product> {
         product.setLastModifiedDate(rs.getTimestamp("last_modified_date"));
 
 
+        product.setCategory(ProductCategory.valueOf(rs.getString("category")));
 
         return product;
     }

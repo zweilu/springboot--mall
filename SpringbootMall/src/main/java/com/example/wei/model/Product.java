@@ -1,12 +1,14 @@
 package com.example.wei.model;
 
+import com.example.wei.constant.ProductCategory;
+
 import java.util.Date;
 
 public class Product {
 
     private Integer productId;
     private String productName;
-    private String category;
+    private ProductCategory category;
     private String imageUrl;
     private Integer price;
     private Integer stock;
