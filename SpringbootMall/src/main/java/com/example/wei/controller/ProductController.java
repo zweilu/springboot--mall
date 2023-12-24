@@ -1,5 +1,6 @@
 package com.example.wei.controller;
 
+import com.example.wei.constant.ProductCategory;
 import com.example.wei.dto.ProductRequest;
 import com.example.wei.model.Product;
 import com.example.wei.service.ProductService;
@@ -18,8 +19,12 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getProducts(){
-        List<Product> productList = productService.getProducts();
+    public ResponseEntity<List<Product>> getProducts(
+            @RequestParam(required = false) ProductCategory category,
+            @RequestParam(required = false) String search
+    ){
+        List<Product> productList = productService.getProducts(category ,search);
+
 
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
