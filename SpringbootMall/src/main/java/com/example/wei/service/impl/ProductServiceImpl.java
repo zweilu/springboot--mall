@@ -2,6 +2,7 @@ package com.example.wei.service.impl;
 
 import com.example.wei.constant.ProductCategory;
 import com.example.wei.dao.ProductDao;
+import com.example.wei.dto.ProductQueryParams;
 import com.example.wei.dto.ProductRequest;
 import com.example.wei.model.Product;
 import com.example.wei.service.ProductService;
@@ -17,8 +18,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts(ProductCategory category,String search) {
-        return productDao.getProducts(category,search);
+    public List<Product> getProducts(ProductQueryParams productQueryParams) {
+        return productDao.getProducts(productQueryParams);
     }
 
     @Override
