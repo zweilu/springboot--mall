@@ -27,7 +27,7 @@ public class ProductDaoImpl implements ProductDao {
                 " created_date, last_modified_date " +
                 "from product where 1=1";
         Map<String, Object> map = new HashMap<>();
-
+        //查詢條件
         if(productQueryParams.getCategory() != null){
             sql = sql +" and category = :category";
             map.put("category", productQueryParams.getCategory().name());
@@ -37,9 +37,12 @@ public class ProductDaoImpl implements ProductDao {
             sql = sql + " and product_name like :search";
             map.put("search", "%"+productQueryParams.getSearch()+"%");
         }
-
+        //排序
         sql = sql + " ORDER By " + productQueryParams.getOrderBy() + " " + productQueryParams.getSort();
-
+        //分頁
+        sql = sql + " limit :limit offset :offset";
+        map.put("limit" ,productQueryParams.getLimit());
+        map.put("offset", productQueryParams.getOffset());
         List<Product> productList = namedParameterJdbcTemplate.query(sql, map, new ProductRowMapper());
 
         return productList;
